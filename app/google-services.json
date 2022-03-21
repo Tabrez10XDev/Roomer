@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "738391765764",
+    "project_id": "roomer-ca0e9",
+    "storage_bucket": "roomer-ca0e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738391765764:android:59a651c363a7b5da7c5651",
+        "android_client_info": {
+          "package_name": "pro.lj.roomer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738391765764-qouhg60511qvirjvtsl1679c0im4sd8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsYwY7ZUqQ6Khp381Nw48y4yTWPZfQHNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738391765764-qouhg60511qvirjvtsl1679c0im4sd8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

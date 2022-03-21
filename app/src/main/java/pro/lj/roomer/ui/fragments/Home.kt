@@ -1,4 +1,4 @@
-package pro.lj.roomer
+package pro.lj.roomer.ui.fragments
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -7,12 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.home.*
+import pro.lj.roomer.R
 
 
 class Home : AppCompatActivity() {
@@ -20,17 +18,17 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
-        imageView.setOnDragListener(dragListener)
-        cvBlue.setOnLongClickListener {
-            val clipText = "This is our clipData Text"
-            val item = ClipData.Item(clipText)
-            val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
-            val data = ClipData(clipText, mimeTypes, item)
-
-            val dragShadowBuilder = View.DragShadowBuilder(it)
-            it.startDragAndDrop(data, dragShadowBuilder, it, 0)
-            true
-        }
+//        imageView.setOnDragListener(dragListener)
+//        cvBlue.setOnLongClickListener {
+//            val clipText = "This is our clipData Text"
+//            val item = ClipData.Item(clipText)
+//            val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
+//            val data = ClipData(clipText, mimeTypes, item)
+//
+//            val dragShadowBuilder = View.DragShadowBuilder(it)
+//            it.startDragAndDrop(data, dragShadowBuilder, it, 0)
+//            true
+//        }
 
     }
 
