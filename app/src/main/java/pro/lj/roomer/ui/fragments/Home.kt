@@ -1,24 +1,61 @@
 package pro.lj.roomer.ui.fragments
 
-import android.content.ClipData
 import android.content.ClipDescription
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.DragEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import pro.lj.roomer.R
+import pro.lj.roomer.databinding.HomeBinding
+import pro.lj.roomer.ui.app.Dashboard
+import pro.lj.roomer.ui.app.MainActivity
 
 
-class Home : AppCompatActivity() {
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
-//        imageView.setOnDragListener(dragListener)
+class Home : Fragment(R.layout.home) {
+    private var _binding: HomeBinding? = null
+    private val binding get() = _binding!!
+    lateinit var auth: FirebaseAuth
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = HomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+
+        binding.button1.setOnClickListener {
+            signOut()
+        }
+
+    }
+
+    private fun signOut(){
+        auth.signOut()
+
+        val intent = Intent(activity, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        activity?.finish()
+    }
+
+    //        imageView.setOnDragListener(dragListener)
 //        cvBlue.setOnLongClickListener {
 //            val clipText = "This is our clipData Text"
 //            val item = ClipData.Item(clipText)
@@ -29,8 +66,6 @@ class Home : AppCompatActivity() {
 //            it.startDragAndDrop(data, dragShadowBuilder, it, 0)
 //            true
 //        }
-
-    }
 
     val dragListener = View.OnDragListener { view, event ->
         when(event.action){
@@ -49,7 +84,7 @@ class Home : AppCompatActivity() {
             DragEvent.ACTION_DROP-> {
                 val item = event.clipData.getItemAt(0)
                 val dragData = item.text
-                Toast.makeText(this, dragData, Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, dragData, Toast.LENGTH_SHORT).show()
 
                 view.invalidate()
 

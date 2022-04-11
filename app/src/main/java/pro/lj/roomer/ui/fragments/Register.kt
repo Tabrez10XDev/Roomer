@@ -18,6 +18,7 @@ import kotlinx.coroutines.withContext
 import pro.lj.roomer.R
 import pro.lj.roomer.databinding.RegisterBinding
 import pro.lj.roomer.ui.app.Dashboard
+import pro.lj.roomer.ui.app.MainActivity
 
 class Register : Fragment(R.layout.register) {
 
@@ -50,6 +51,9 @@ class Register : Fragment(R.layout.register) {
             hideKeyboard()
             registerUser()
 
+        }
+        binding.ibtnGoogle.setOnClickListener {
+            (activity as MainActivity).gSignIn()
         }
     }
 

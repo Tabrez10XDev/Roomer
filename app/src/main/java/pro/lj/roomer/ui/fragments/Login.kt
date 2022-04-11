@@ -1,8 +1,11 @@
 package pro.lj.roomer.ui.fragments
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +13,13 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,12 +27,11 @@ import kotlinx.coroutines.withContext
 import pro.lj.roomer.R
 import pro.lj.roomer.databinding.LoginBinding
 import pro.lj.roomer.ui.app.Dashboard
+import pro.lj.roomer.ui.app.MainActivity
 
 class Login : Fragment(R.layout.login) {
-
     private var _binding: LoginBinding? = null
     lateinit var auth: FirebaseAuth
-
     private val binding get() = _binding!!
 
     override fun onStart() {
@@ -48,14 +56,25 @@ class Login : Fragment(R.layout.login) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
       //  hidebar()
-            binding.btnLogin.setOnClickListener {
+
+        binding.btnLogin.setOnClickListener {
                 hideKeyboard()
                 loginUser()
             }
-            binding.btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_login_to_register)
             }
+        binding.ibtnGoogle.setOnClickListener {
+            (activity as MainActivity).gSignIn()
+        }
+
+
+
+
     }
+
+
+
 
     private fun hideKeyboard(){
         val view = activity?.currentFocus
@@ -115,6 +134,9 @@ class Login : Fragment(R.layout.login) {
 
         }
     }
+
+
+
 
 //    private fun hidebar(){
 //        progresslog.visibility = View.INVISIBLE

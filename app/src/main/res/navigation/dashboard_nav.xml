@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_nav"
-    app:startDestination="@id/home2">
-
-    <activity
-        android:id="@+id/home2"
+    app:startDestination="@id/home">
+    <fragment
+        android:id="@+id/home"
         android:name="pro.lj.roomer.ui.fragments.Home"
         android:label="Home" />
+    <fragment
+        android:id="@+id/wishlist"
+        android:name="pro.lj.roomer.ui.fragments.Wishlist"
+        android:label="Wishlist" />
+    <fragment
+        android:id="@+id/cart"
+        android:name="pro.lj.roomer.ui.fragments.Cart"
+        android:label="Cart" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="pro.lj.roomer.ui.fragments.Profile"
+        android:label="Profile" />
 </navigation>
