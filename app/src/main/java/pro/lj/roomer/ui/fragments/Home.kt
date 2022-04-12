@@ -40,9 +40,9 @@ class Home : Fragment(R.layout.home) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
-        binding.button1.setOnClickListener {
-            signOut()
-        }
+//        binding.button1.setOnClickListener {
+  //          signOut()
+//        }
 
     }
 
@@ -55,6 +55,30 @@ class Home : Fragment(R.layout.home) {
         activity?.finish()
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //        imageView.setOnDragListener(dragListener)
 //        cvBlue.setOnLongClickListener {
 //            val clipText = "This is our clipData Text"
@@ -66,40 +90,40 @@ class Home : Fragment(R.layout.home) {
 //            it.startDragAndDrop(data, dragShadowBuilder, it, 0)
 //            true
 //        }
-
-    val dragListener = View.OnDragListener { view, event ->
-        when(event.action){
-            DragEvent.ACTION_DRAG_STARTED -> {
-                event.clipDescription.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)
-            }
-            DragEvent.ACTION_DRAG_ENTERED-> {
-                view.invalidate()
-                true
-            }
-            DragEvent.ACTION_DRAG_LOCATION -> true
-            DragEvent.ACTION_DRAG_EXITED -> {
-                view.invalidate()
-                true
-            }
-            DragEvent.ACTION_DROP-> {
-                val item = event.clipData.getItemAt(0)
-                val dragData = item.text
-                Toast.makeText(activity, dragData, Toast.LENGTH_SHORT).show()
-
-                view.invalidate()
-
-                val v = event.localState as View
-                val destination = view
-                Log.d("TABY",dragData.toString())
-                true
-            }
-            DragEvent.ACTION_DRAG_ENDED-> {
-                view.invalidate()
-                true
-            }
-            else-> {
-                false
-            }
-        }
-    }
+//
+//    val dragListener = View.OnDragListener { view, event ->
+//        when(event.action){
+//            DragEvent.ACTION_DRAG_STARTED -> {
+//                event.clipDescription.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)
+//            }
+//            DragEvent.ACTION_DRAG_ENTERED-> {
+//                view.invalidate()
+//                true
+//            }
+//            DragEvent.ACTION_DRAG_LOCATION -> true
+//            DragEvent.ACTION_DRAG_EXITED -> {
+//                view.invalidate()
+//                true
+//            }
+//            DragEvent.ACTION_DROP-> {
+//                val item = event.clipData.getItemAt(0)
+//                val dragData = item.text
+//                Toast.makeText(activity, dragData, Toast.LENGTH_SHORT).show()
+//
+//                view.invalidate()
+//
+//                val v = event.localState as View
+//                val destination = view
+//                Log.d("TABY",dragData.toString())
+//                true
+//            }
+//            DragEvent.ACTION_DRAG_ENDED-> {
+//                view.invalidate()
+//                true
+//            }
+//            else-> {
+//                false
+//            }
+//        }
+//    }
 }

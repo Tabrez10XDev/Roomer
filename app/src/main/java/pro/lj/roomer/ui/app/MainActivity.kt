@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     private var showOneTapUI = true
-    private var _binding: LoginBinding? = null
     lateinit var auth: FirebaseAuth
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
