@@ -18,6 +18,7 @@ class Dashboard : AppCompatActivity() {
         setContentView(view)
         binding.bottomNavBar.setupWithNavController(findNavController(R.id.fragment2))
 
+        binding.bottomNavBar.itemIconTintList = null
 //    blur1.setBlur(3)
 //        blur2.setBlur(3)
 //        val intent = Intent(this, Home::class.java)
