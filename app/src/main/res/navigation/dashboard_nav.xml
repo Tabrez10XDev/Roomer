@@ -5,7 +5,11 @@
     <fragment
         android:id="@+id/home"
         android:name="pro.lj.roomer.ui.fragments.Home"
-        android:label="Home" />
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home_to_productDetail"
+            app:destination="@id/productDetail" />
+    </fragment>
     <fragment
         android:id="@+id/wishlist"
         android:name="pro.lj.roomer.ui.fragments.Wishlist"
@@ -18,4 +22,8 @@
         android:id="@+id/profile"
         android:name="pro.lj.roomer.ui.fragments.Profile"
         android:label="Profile" />
+    <fragment
+        android:id="@+id/productDetail"
+        android:name="pro.lj.roomer.ui.fragments.ProductDetail"
+        android:label="ProductDetail" />
 </navigation>

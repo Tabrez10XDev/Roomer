@@ -1,7 +1,10 @@
 package pro.lj.roomer.ui.fragments
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.content.ClipData
 import android.content.ClipDescription
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -15,7 +18,10 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.ColorInt
+import androidx.constraintlayout.motion.widget.OnSwipe
+import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +30,7 @@ import pro.lj.roomer.R
 import pro.lj.roomer.data.Item
 import pro.lj.roomer.databinding.HomeBinding
 import pro.lj.roomer.ui.adapters.HomeAdapter
+import pro.lj.roomer.ui.app.AR
 import pro.lj.roomer.ui.app.Dashboard
 import pro.lj.roomer.ui.app.MainActivity
 import pro.lj.roomer.util.BounceEdgeEffectFactory
@@ -79,26 +86,23 @@ class Home : Fragment(R.layout.home) {
             .addOnFailureListener { exception ->
                 Log.w("TABY", "Error getting documents.", exception)
             }
-        homeAdapter.setOnItemClickListener { it, clipText ->
+        homeAdapter.setOnItemLongClickListener { it, clipText ->
             val item = ClipData.Item(clipText)
             val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
             val data = ClipData(clipText, mimeTypes, item)
-
-            val dragShadowBuilder = View.DragShadowBuilder(it)
+            val dragShadowBuilder = DragShadowBuilder(it)
             it.startDragAndDrop(data, dragShadowBuilder, it, DRAG_FLAG_OPAQUE)
         }
-
+        homeAdapter.setOnItemClickListener {
+            findNavController().navigate(R.id.action_home_to_productDetail)
+        }
         binding.Linear2.setOnDragListener(dragListener)
-
-
     }
 
     private fun setupBlur(){
         binding.blurLayout.startBlur()
         binding.blurLayout.visibility = INVISIBLE
-//        binding.blurLayout.blurRadius = 12
-//        binding.blurLayout.downscaleFactor = 0.12f
-//        binding.blurLayout.fps = 30
+
     }
 
     private fun reduceAlpha(){
@@ -136,6 +140,7 @@ class Home : Fragment(R.layout.home) {
     }
 
 
+
     val dragListener = View.OnDragListener { view, event ->
         when(event.action){
             DragEvent.ACTION_DRAG_STARTED -> {
@@ -165,7 +170,9 @@ class Home : Fragment(R.layout.home) {
 
                 val v = event.localState as View
                 val destination = view
-                Log.d("LJ1",dragData.toString())
+                val intent = Intent(activity, AR::class.java)
+                Log.d("TAGGG","heresss")
+                startActivity(intent)
                 true
             }
             DragEvent.ACTION_DRAG_ENDED-> {
@@ -178,4 +185,6 @@ class Home : Fragment(R.layout.home) {
             }
         }
     }
+
+
 }

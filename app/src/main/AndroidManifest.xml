@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pro.lj.roomer">
+    <!-- Both "AR Optional" and "AR Required" apps require CAMERA permission. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Sceneform requires OpenGL ES 3.0 or later. -->
+    <uses-feature android:glEsVersion="0x00030000" android:required="true" />
+
+    <uses-feature android:name="android.hardware.camera.ar" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +26,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.app.Dashboard" />
+        <activity android:name=".ui.app.AR" />
+
+        <meta-data android:name="com.google.ar.core" android:value="required" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

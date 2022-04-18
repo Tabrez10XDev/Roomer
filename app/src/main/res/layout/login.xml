@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guideline6"
+        android:src="@drawable/ic_login_doodle"
+        app:layout_constraintEnd_toEndOf="@id/guideline7"
+        app:layout_constraintBottom_toTopOf="@id/guideline5"
+        android:layout_marginBottom="16dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -60,7 +69,7 @@
         android:background="@drawable/et_login"
         android:drawableLeft="@drawable/ic_user"
         android:drawablePadding="10dp"
-        android:hint="Username"
+        android:hint="Email"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="#DF8AAD"
@@ -144,7 +153,6 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/btn_login_light"
         android:elevation="10dp"
-        android:alpha="0.35"
         android:text="Create An Account"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
