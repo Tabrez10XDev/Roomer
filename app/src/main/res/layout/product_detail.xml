@@ -1,6 +1,313 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/main_bg"
     android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.95"
+        android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.35"
+        android:orientation="horizontal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Roomer"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="-20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline5"/>
+
+    <LinearLayout
+        android:id="@+id/Linear1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/home_bg"
+        app:layout_constraintStart_toStartOf="@id/guideline4"
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline5"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="314dp"
+        tools:layout_editor_absoluteY="326dp">
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Layout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        app:layout_constraintEnd_toEndOf="@id/Linear1"
+        app:layout_constraintBottom_toTopOf="@id/guideline6"
+        android:background="@drawable/product_detail_ll"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="@id/Linear1">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProduct"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/tortor_chair"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_product_detail_ar"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivProduct"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/transparent"
+            android:src="@drawable/wishlist_selector"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reviews"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/ratingBar"
+            app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+            android:paddingRight="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/ratingBar"/>
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/ivProduct"
+            app:layout_constraintStart_toEndOf="@+id/ivProduct"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:background="@color/white"
+            android:numStars="5"
+            android:progressTint="#FFCB45"
+            android:rating="4.5" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDealer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dealer:           "
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/Layout2"
+        app:layout_constraintEnd_toEndOf="@id/Linear1"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tortor Chair"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/Layout2"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/layio"
+        android:background="@drawable/quantity_ll_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintEnd_toEndOf="@id/Linear1"
+        android:layout_marginRight="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="9dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/less"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="9dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_minus" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/prnumber"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="0"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="9dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="4dp"
+                android:tint="@color/black"
+                android:src="@drawable/ic_baseline_add_24" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/layio"
+        app:layout_constraintBottom_toBottomOf="@id/layio"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        android:layout_marginStart="16dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:text="$6,599"
+        android:textColor="@color/black"/>
+
+    <View
+        android:id="@+id/grayLL"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        app:layout_constraintEnd_toEndOf="@id/Linear1"
+        app:layout_constraintTop_toBottomOf="@id/layio"
+        android:layout_marginTop="24dp"
+        android:background="#F2F7FA" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#409A43"
+        android:text="FREE delivery"
+        app:layout_constraintTop_toBottomOf="@id/grayLL"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#409A43"
+        android:text="In stock"
+        app:layout_constraintTop_toBottomOf="@id/tvDelivery"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBuy"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        app:layout_constraintEnd_toEndOf="@id/Linear1"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvStock"
+        android:layout_marginTop="12dp"
+        android:text="Buy Now"
+        android:textColor="@color/white"
+        android:backgroundTint="#D97CA2"
+        android:background="@drawable/product_detail_btn"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        app:layout_constraintEnd_toEndOf="@id/Linear1"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/btnBuy"
+        android:layout_marginTop="12dp"
+        android:text="Add to Cart"
+        android:textColor="@color/white"
+        android:backgroundTint="#6ED0CF"
+        android:background="@drawable/product_detail_btn"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="ABOUT THIS ITEM"
+        app:layout_constraintTop_toBottomOf="@id/btnAdd"
+        app:layout_constraintStart_toStartOf="@id/Linear1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

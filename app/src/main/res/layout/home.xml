@@ -119,7 +119,7 @@
         app:layout_constraintStart_toStartOf="@id/Linear1"
         android:layout_marginLeft="-5dp"
         android:layout_marginRight="-5dp"
-        android:background="@drawable/sub"
+        android:background="@drawable/home_rect"
         app:layout_constraintEnd_toEndOf="@id/Linear1"
         android:layout_height="0dp"
         android:layout_marginBottom="-50dp"
