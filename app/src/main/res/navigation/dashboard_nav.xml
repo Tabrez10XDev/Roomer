@@ -21,9 +21,17 @@
     <fragment
         android:id="@+id/profile"
         android:name="pro.lj.roomer.ui.fragments.Profile"
-        android:label="Profile" />
+        android:label="Profile" >
+        <action
+            android:id="@+id/action_profile_to_shoppingAddress"
+            app:destination="@id/shoppingAddress" />
+    </fragment>
     <fragment
         android:id="@+id/productDetail"
         android:name="pro.lj.roomer.ui.fragments.ProductDetail"
         android:label="ProductDetail" />
+    <fragment
+        android:id="@+id/shoppingAddress"
+        android:name="pro.lj.roomer.ui.fragments.ShoppingAddress"
+        android:label="ShoppingAddress" />
 </navigation>
