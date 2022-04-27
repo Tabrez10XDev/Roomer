@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="horizontal" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Profile"
+        app:layout_constraintTop_toTopOf="@id/guideline9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/layio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvProfile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/order_history_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Full Name"/>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint=""
+            android:elevation="16dp"
+            android:inputType="textPersonName"
+            android:background="@drawable/et_search"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Mobile Number"/>
+
+        <EditText
+            android:id="@+id/etNumber"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint=""
+            android:elevation="16dp"
+            android:inputType="number"
+            android:background="@drawable/et_search"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Password"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint=""
+            android:elevation="16dp"
+            android:inputType="textPassword"
+            android:background="@drawable/et_search"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Confirm Password"/>
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint=""
+            android:elevation="16dp"
+            android:inputType="textPassword"
+            android:background="@drawable/et_search"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="46dp"
+            android:text="Confirm"
+            android:background="@drawable/et_search"
+            android:backgroundTint="#008B8A"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

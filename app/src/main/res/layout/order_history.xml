@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/main_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.05"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.55"
+        android:orientation="horizontal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOrderHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="Order History"
+        app:layout_constraintTop_toTopOf="@id/guideline9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/layio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderHistory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/order_history_bg"
+        android:orientation="horizontal" />
+
+
+    <TextView
+        android:id="@+id/tvAlreadyDone"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/layio"
+        app:layout_constraintTop_toTopOf="@id/layio"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Already done"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAlreadyDone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@id/layio"
+        app:layout_constraintEnd_toEndOf="@id/layio"
+        app:layout_constraintTop_toBottomOf="@id/tvAlreadyDone"
+        app:layout_constraintBottom_toTopOf="@id/guideline10"/>
+
+    <TextView
+        android:id="@+id/tvUpcoming"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/layio"
+        app:layout_constraintTop_toTopOf="@id/guideline10"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Upcoming"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUpcoming"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@id/layio"
+        app:layout_constraintEnd_toEndOf="@id/layio"
+        app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
+        app:layout_constraintBottom_toBottomOf="@id/layio"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
