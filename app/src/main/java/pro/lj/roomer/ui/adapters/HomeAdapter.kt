@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.storage.FirebaseStorage
 import pro.lj.roomer.R
 import pro.lj.roomer.data.Item
@@ -100,14 +101,20 @@ class HomeAdapter :RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
                 tvPrice.text = "₹" + item.price.toString()
                 ratingBar.rating = item.stars
             }
-            val httpsRef = storageRef.getReferenceFromUrl(item.imageUri)
-            val ONE_MEGABYTE: Long = 1024 * 1024
-            httpsRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
-                val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
-                binding.ivProduct.setImageBitmap(Bitmap.createScaledBitmap(bmp, binding.ivProduct.width, binding.ivProduct.height, false));
-            }.addOnFailureListener {
-                Log.d("TABY",it.localizedMessage)
-            }
+//            val httpsRef = storageRef.getReferenceFromUrl(item.imageUri)
+//            val ONE_MEGABYTE: Long = 1024 * 1024
+//            httpsRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+//                val bmp = BitmapFactory.decodeByteArray(it, 0, it.size)
+
+//
+//              //  binding.ivProduct.setImageBitmap(Bitmap.createScaledBitmap(bmp, binding.ivProduct.width, binding.ivProduct.height, false));
+//            }.addOnFailureListener {
+//                Log.d("TABY",it.localizedMessage)
+//            }
+                    Glide
+                        .with(itemView.context)
+                        .load(item.imageUri)
+                        .into(binding.ivProduct)
         }
 
 

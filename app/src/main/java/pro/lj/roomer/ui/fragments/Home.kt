@@ -1,14 +1,9 @@
 package pro.lj.roomer.ui.fragments
 
-import android.animation.AnimatorInflater
-import android.animation.AnimatorSet
 import android.content.ClipData
 import android.content.ClipDescription
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.DragEvent
@@ -17,32 +12,37 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.ColorInt
-import androidx.constraintlayout.motion.widget.OnSwipe
-import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import pro.lj.roomer.R
-import pro.lj.roomer.data.Item
 import pro.lj.roomer.databinding.HomeBinding
+import pro.lj.roomer.repositories.MainRepository
 import pro.lj.roomer.ui.adapters.HomeAdapter
 import pro.lj.roomer.ui.app.AR
 import pro.lj.roomer.ui.app.Dashboard
 import pro.lj.roomer.ui.app.MainActivity
 import pro.lj.roomer.util.BounceEdgeEffectFactory
+import pro.lj.roomer.util.Status
+import pro.lj.roomer.viewmodel.MainViewModel
 
 
 class Home : Fragment(R.layout.home) {
     private var _binding: HomeBinding? = null
     private val binding get() = _binding!!
     lateinit var auth: FirebaseAuth
-    private lateinit var fireStore : FirebaseFirestore
     private lateinit var homeAdapter: HomeAdapter
-    private lateinit var storageRef : FirebaseStorage
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        homeAdapter =
+                HomeAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,30 +62,29 @@ class Home : Fragment(R.layout.home) {
         _binding = null
     }
 
+    private val viewModel : MainViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupBlur()
         auth = FirebaseAuth.getInstance()
-        fireStore = FirebaseFirestore.getInstance()
-        storageRef = FirebaseStorage.getInstance()
+
         setupHomeRecyclerView()
-        fireStore.collection("products")
-            .get()
-            .addOnSuccessListener { result ->
-                val itemList : MutableList<Item> = arrayListOf()
-                for (document in result) {
 
-                    itemList.add(
-                        document.toObject(Item::class.java)
-                    )
-
-                    homeAdapter.differ.submitList(itemList)
-                    Log.d("TABY", "${document.id} => ${document.data}")
+        viewModel.producutList.observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.LOADING ->{
+                    //TODO
+                }
+                Status.SUCCESS->{
+                    Log.d("babys","here")
+                    homeAdapter.differ.submitList(it.data)
+                }
+                Status.ERROR->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.w("TABY", "Error getting documents.", exception)
-            }
+        })
+
         homeAdapter.setOnItemLongClickListener { it, clipText ->
             val item = ClipData.Item(clipText)
             val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
@@ -94,9 +93,13 @@ class Home : Fragment(R.layout.home) {
             it.startDragAndDrop(data, dragShadowBuilder, it, DRAG_FLAG_OPAQUE)
         }
         homeAdapter.setOnItemClickListener {
-            findNavController().navigate(R.id.action_home_to_productDetail)
+            val bundle = Bundle().apply {
+                putSerializable("item",it)
+            }
+            findNavController().navigate(R.id.action_home_to_productDetail,bundle)
         }
         binding.Linear2.setOnDragListener(dragListener)
+
     }
 
     private fun setupBlur(){
@@ -129,13 +132,14 @@ class Home : Fragment(R.layout.home) {
     }
 
     private fun setupHomeRecyclerView(){
-        homeAdapter =
-                HomeAdapter()
+
         binding.homeRV.apply {
             adapter = homeAdapter
             layoutManager = GridLayoutManager(requireActivity(), 2)
             edgeEffectFactory =
                     BounceEdgeEffectFactory()
+
+
         }
     }
 

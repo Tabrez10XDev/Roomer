@@ -43,6 +43,7 @@
             android:layout_margin="18dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_search"

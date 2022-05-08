@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,6 +25,7 @@ class Register : Fragment(R.layout.register) {
 
     private var _binding: RegisterBinding? = null
     lateinit var auth: FirebaseAuth
+    private var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
 
     private val binding get() = _binding!!
 
@@ -44,9 +46,6 @@ class Register : Fragment(R.layout.register) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        binding.btnLogin.setOnClickListener {
-            findNavController().popBackStack()
-        }
         binding.btnRegister.setOnClickListener {
             hideKeyboard()
             registerUser()
@@ -79,10 +78,18 @@ class Register : Fragment(R.layout.register) {
         //showbar()
         val email = binding.etUsername.text.toString()
         val password = binding.etPassword.text.toString()
+        val name = binding.etFullName.text.toString()
+        val number = binding.etNumber.text.toString()
+        val user = hashMapOf(
+                "name" to name,
+                "number" to number,
+                "email" to email
+        )
         if( email.isNotEmpty() && password.isNotEmpty()){
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
+                        fireStore.collection("users").document(auth.uid!!).set(user)
                         Toast.makeText(activity,"Account created",Toast.LENGTH_SHORT).show()
                         checkLoggedInState()
                     }.addOnFailureListener(){

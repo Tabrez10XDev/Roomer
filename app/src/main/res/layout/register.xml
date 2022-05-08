@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etFullName"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:layout_marginTop="32dp"
@@ -70,7 +70,7 @@
         android:background="@drawable/et_login"
         android:drawableLeft="@drawable/ic_user"
         android:drawablePadding="10dp"
-        android:hint="Email"
+        android:hint="Full Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:pointerIcon="cell"
@@ -79,6 +79,50 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/etNumber"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:width="296dp"
+        android:height="80dp"
+        android:textColor="#DF8AAD"
+        android:background="@drawable/et_login"
+        android:drawableLeft="@drawable/ic_outline_phone_24"
+        android:drawableTint="#DF8AAD"
+        android:drawablePadding="10dp"
+        android:hint="Mobile number"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:pointerIcon="cell"
+        android:textColorHint="#DF8AAD"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/etFullName" />
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:width="296dp"
+        android:height="80dp"
+        android:textColor="#DF8AAD"
+        android:background="@drawable/et_login"
+        android:drawableLeft="@drawable/ic_outline_mail_24"
+        android:drawablePadding="10dp"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:pointerIcon="cell"
+        android:textColorHint="#DF8AAD"
+        android:textSize="18sp"
+        android:drawableTint="#DF8AAD"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/etNumber" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -115,61 +159,16 @@
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        app:srcCompat="@drawable/ic_line_3" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Or"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
-        app:srcCompat="@drawable/ic_line_3" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/btn_login_light"
-        android:elevation="10dp"
-        android:text="Login"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
     <ImageButton
         android:id="@+id/ibtnGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:padding="4dp"
-        android:elevation="4dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/ibtn_bg"
+        android:elevation="4dp"
+        android:padding="4dp"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        app:srcCompat="@drawable/ic_google" />
+        app:srcCompat="@drawable/ic_google"
+        tools:layout_editor_absoluteY="757dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

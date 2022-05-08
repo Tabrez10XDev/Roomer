@@ -25,13 +25,24 @@
         <action
             android:id="@+id/action_profile_to_shoppingAddress"
             app:destination="@id/shoppingAddress" />
+        <action
+            android:id="@+id/action_profile_to_orderInformation"
+            app:destination="@id/orderInformation" />
     </fragment>
     <fragment
         android:id="@+id/productDetail"
         android:name="pro.lj.roomer.ui.fragments.ProductDetail"
-        android:label="ProductDetail" />
+        android:label="ProductDetail" >
+        <argument
+            android:name="item"
+            app:argType="pro.lj.roomer.data.Item" />
+    </fragment>
     <fragment
         android:id="@+id/shoppingAddress"
         android:name="pro.lj.roomer.ui.fragments.ShoppingAddress"
         android:label="ShoppingAddress" />
+    <fragment
+        android:id="@+id/orderInformation"
+        android:name="pro.lj.roomer.ui.fragments.OrderInformation"
+        android:label="OrderInformation" />
 </navigation>

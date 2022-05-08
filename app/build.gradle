@@ -5,6 +5,7 @@ plugins {
     id 'com.google.gms.google-services'
     id  "androidx.navigation.safeargs"
     id 'com.google.ar.sceneform.plugin'
+    id "dagger.hilt.android.plugin"
 
 }
 
@@ -39,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -97,6 +102,25 @@ dependencies {
     // Alternatively, use ArSceneView without the UX dependency.
     implementation 'com.google.ar.sceneform:core:1.17.1'
 
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
 
 
+
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+
+    def room_version = "2.2.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation "androidx.room:room-ktx:2.3.0"
+    kapt "androidx.room:room-compiler:$room_version"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+
+
+    implementation "com.google.android.gms:play-services-location:18.0.0"
 }
