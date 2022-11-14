@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="cardColour"
+            type="Integer" />
+        <variable
+            name="textColour"
             type="Integer" />
         <variable
             name="category"
@@ -23,7 +27,7 @@
         app:cardCornerRadius="16dp"
         android:onClick="@{onClickContent}"
         app:cardBackgroundColor="@{ContextCompat.getColor(context, cardColour)}"
-        android:elevation="0dp"
+        app:cardElevation="0dp"
         android:paddingTop="4dp"
         android:layout_height="60dp">
 
@@ -38,19 +42,21 @@
 
             <ImageView
                 android:id="@+id/ivCategory"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@{imgRes}"
-                android:layout_gravity="center_horizontal" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:imageResource="@{imgRes}"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:tint="@{ContextCompat.getColor(context, textColour)}"
+                tools:ignore="UseAppTint" />
 
             <TextView
                 android:id="@+id/tvCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@{ContextCompat.getColor(context, textColour)}"
                 android:textSize="18dp"
                 android:text="@{category}"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:fontFamily="@font/open_sans_semibold" />
 
         </LinearLayout>

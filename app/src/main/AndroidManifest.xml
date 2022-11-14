@@ -31,6 +31,7 @@
             android:exported="true"/>
         <activity android:name=".ui.app.AR"
             android:exported="true"/>
+        <activity android:name=".ui.app.MeasureAR" />
 
         <meta-data android:name="com.google.ar.core" android:value="required" />
         <meta-data

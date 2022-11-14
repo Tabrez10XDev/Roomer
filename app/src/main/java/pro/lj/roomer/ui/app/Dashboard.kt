@@ -1,5 +1,6 @@
 package pro.lj.roomer.ui.app
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Bundle
@@ -41,7 +42,12 @@ class Dashboard : AppCompatActivity() {
                     findNavController(R.id.dashboardFragment).popBackStack(R.id.dashboard_nav, true)
                     findNavController(R.id.dashboardFragment).navigate(it)
 
-                }else->{
+                }
+                R.id.measure->{
+                    val intent = Intent(this, MeasureAR::class.java)
+                    startActivity(intent)
+                }
+                else->{
                 findNavController(R.id.dashboardFragment).popBackStack(R.id.dashboard_nav, true)
                 findNavController(R.id.dashboardFragment).navigate(it)
 

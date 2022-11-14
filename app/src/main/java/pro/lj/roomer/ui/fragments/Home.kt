@@ -1,12 +1,8 @@
 package pro.lj.roomer.ui.fragments
 
-import android.content.ClipData
-import android.content.ClipDescription
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
@@ -16,24 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.airbnb.epoxy.CarouselModel_
-import com.airbnb.epoxy.EpoxyModel.SpanSizeOverrideCallback
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import pro.lj.roomer.*
+import pro.lj.roomer.data.Item
 import pro.lj.roomer.databinding.HomeBinding
-import pro.lj.roomer.repositories.MainRepository
 import pro.lj.roomer.ui.adapters.HomeAdapter
-import pro.lj.roomer.ui.app.AR
-import pro.lj.roomer.ui.app.Dashboard
 import pro.lj.roomer.ui.app.MainActivity
-import pro.lj.roomer.util.BounceEdgeEffectFactory
 import pro.lj.roomer.util.Constants.CATEGORIES
 import pro.lj.roomer.util.Status
 import pro.lj.roomer.viewmodel.MainViewModel
-
 
 class Home : Fragment(R.layout.home) {
     private var _binding: HomeBinding? = null
@@ -68,22 +56,21 @@ class Home : Fragment(R.layout.home) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
-        setupHomeRecyclerView()
 
-//        viewModel.producutList.observe(viewLifecycleOwner, Observer {
-//            when(it.status){
-//                Status.LOADING ->{
-//                    //TODO
-//                }
-//                Status.SUCCESS->{
-//                    Log.d("babys","here")
-//                    homeAdapter.differ.submitList(it.data)
-//                }
-//                Status.ERROR->{
-//                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        })
+        viewModel.producutList.observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.LOADING ->{
+                    //TODO
+                }
+                Status.SUCCESS->{
+                  //  homeAdapter.differ.submitList(it.data)
+                    setupHomeRecyclerView(it.data)
+                }
+                Status.ERROR->{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
 
 //        homeAdapter.setOnItemLongClickListener { it, clipText ->
 //            val item = ClipData.Item(clipText)
@@ -112,8 +99,7 @@ class Home : Fragment(R.layout.home) {
         activity?.finish()
     }
 
-    private fun setupHomeRecyclerView(){
-
+    private fun setupHomeRecyclerView(data: List<Item>?) {
         binding.rvHome.withModels {
             iv { id(-1) }
             tv {
@@ -123,16 +109,19 @@ class Home : Fragment(R.layout.home) {
             val deptModels = mutableListOf<CardBindingModel_>()
             CATEGORIES.forEachIndexed { index, item ->
                 val colour = if(selected==index) R.color.date_selected else R.color.date_unselected
+                val textColour = if(selected==index) R.color.white else R.color.text_unselected
 
                 deptModels.add(
                     CardBindingModel_()
                         .id(index)
                         .category(item.name)
                         .imgRes(item.img)
+                        .textColour(textColour)
                         .onClickContent { _ ->
                             selected = index
                             this.requestModelBuild()
                         }
+
                         .cardColour(colour)
 
                 )
@@ -149,31 +138,25 @@ class Home : Fragment(R.layout.home) {
             }
 
 
-            val arr = arrayListOf<Int>(1,2,3,4,5,6)
-
-            this.spanCount = 2
-            arr.forEachIndexed { index, i ->
+            data?.forEachIndexed { index, i ->
+                Log.d("PRABHU",i.imageUri + ":  Hey")
                 productCard {
                     id(100 + index)
+                    name(i.name)
+                    price("₹" + i.price)
+                    img(i.imageUri)
+                //    spanSizeOverride { totalSpanCount, position, itemCount -> totalSpanCount/2  }
                     onClickContent { _ ->
-                        findNavController().navigate(R.id.action_home_to_productDetail)
-//                        val intent = Intent(activity, AR::class.java)
-//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                        startActivity(intent)
+                        val bundle = Bundle().apply {
+                            putSerializable("item",i)
+                        }
+                        findNavController().navigate(R.id.action_home_to_productDetail,bundle)
                     }
-                   // spanSizeOverride { totalSpanCount, position, itemCount -> 2 }
                 }
             }
         }
 
-//        binding.homeRV.apply {
-//            adapter = homeAdapter
-//            layoutManager = GridLayoutManager(requireActivity(), 2)
-//            edgeEffectFactory =
-//                    BounceEdgeEffectFactory()
-//
-//
-//        }
+
     }
 
 
