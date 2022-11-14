@@ -14,7 +14,7 @@ import pro.lj.roomer.databinding.ProductDetailBinding
 import pro.lj.roomer.ui.app.Dashboard
 import pro.lj.roomer.viewmodel.MainViewModel
 
-class ProductDetail : Fragment(R.layout.product_detail) {
+class ProductDetail : Fragment() {
 
     private var _binding: ProductDetailBinding? = null
     lateinit var auth: FirebaseAuth

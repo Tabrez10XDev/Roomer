@@ -7,9 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="landing_bg">#2BB7A3</color>
+    <color name="text_hint">#B2B2B2</color>
+    <color name="cpTransparent">#00000000</color>
+    <color name="availability_green">#27B1A3</color>
+    <color name="availability_red">#EB4F56</color>
+    <color name="date_unselected">#ECF4F4</color>
+    <color name="date_selected">#1AA0A4</color>
+    <color name="history_date_selected">#22ABA4</color>
+    <color name="history_date_unselected">#78C7BF</color>
     <color name="transparent">#00000000</color>
 
-    <color name="darkPink">#DE7FA6</color>
+    <color name="darkPink">#FFF</color>
 
 
 </resources>

@@ -61,12 +61,12 @@ class Login : Fragment(R.layout.login) {
                 hideKeyboard()
                 loginUser()
             }
-        binding.btnRegister.setOnClickListener {
+        binding.tvSignup.setOnClickListener {
                 findNavController().navigate(R.id.action_login_to_register)
             }
-        binding.ibtnGoogle.setOnClickListener {
-            (activity as MainActivity).gSignIn()
-        }
+//        binding.ibtnGoogle.setOnClickListener {
+//            (activity as MainActivity).gSignIn()
+//        }
 
 
 
@@ -88,8 +88,8 @@ class Login : Fragment(R.layout.login) {
 
     private fun loginUser() {
         //showbar()
-        val email = binding.etUsername.text.toString()
-        val password = binding.etPassword.text.toString()
+        val email = binding.editTextMail.text.toString()
+        val password = binding.editTextPassword.text.toString()
         if( email.isNotEmpty() && password.isNotEmpty()){
             CoroutineScope(Dispatchers.IO).launch {
                 try {

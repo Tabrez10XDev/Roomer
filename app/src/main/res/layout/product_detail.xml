@@ -50,7 +50,7 @@
         android:id="@+id/Linear1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/home_bg"
+        android:background="@drawable/home_card_bg"
         app:layout_constraintStart_toStartOf="@id/guideline4"
         app:layout_constraintEnd_toEndOf="@id/guideline3"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,269 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@drawable/main_bg"
-        android:id="@+id/root"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <io.alterac.blurkit.BlurLayout
-        android:id="@+id/blurLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@id/Linear1"
-        app:layout_constraintBottom_toBottomOf="@id/etSearch"
-        app:layout_constraintEnd_toEndOf="@id/homeRV"
-        app:layout_constraintStart_toStartOf="@id/homeRV"
-        android:translationZ="50dp"
-        app:blk_blurRadius="12"
-        app:blk_downscaleFactor="0.12"
-        app:blk_fps="60"/>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="8dp"
+    android:clipToPadding="false"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.05"
-        android:orientation="vertical" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.05"
-        android:orientation="horizontal" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvOuter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="70dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="250dp"
+            app:cardElevation="240dp"
+            android:outlineSpotShadowColor="#26B1A3"
+            android:outlineAmbientShadowColor="#26B1A3"
+            app:cardBackgroundColor="@color/white">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.95"
-        android:orientation="vertical" />
+            <androidx.cardview.widget.CardView
+                android:layout_margin="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="250dp"
+                android:layout_gravity="center">
 
-    <EditText
-        android:id="@+id/etSearch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/et_search"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/ic_baseline_search_24"
-        android:drawablePadding="15dp"
-        android:hint="Search"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+                <ImageView
+                    android:id="@+id/ivPerson"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/default_profile"
+                    android:scaleType="centerCrop"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.2"
-        android:orientation="horizontal" />
+            </androidx.cardview.widget.CardView>
 
+        </androidx.cardview.widget.CardView>
 
-
-    <LinearLayout
-        android:id="@+id/Linear1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/home_bg"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintEnd_toEndOf="@id/guideline3"
-        app:layout_constraintBottom_toTopOf="@id/etSearch"
-        app:layout_constraintTop_toTopOf="@id/guideline4"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="314dp"
-        tools:layout_editor_absoluteY="326dp">
-    </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/homeRV"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/Linear1"
-            app:layout_constraintEnd_toEndOf="@id/Linear1"
-            app:layout_constraintBottom_toBottomOf="@id/Linear1"
-            app:layout_constraintTop_toBottomOf="@id/Linear2"
-            android:padding="16dp"
-            />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roomer"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginBottom="-20dp"
-        app:layout_constraintStart_toStartOf="@id/Linear1"
-        app:layout_constraintEnd_toEndOf="@id/Linear1"
-        app:layout_constraintBottom_toTopOf="@id/Linear2"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:translationZ="90dp"
-        android:id="@+id/Linear2"
-        app:layout_constraintBottom_toTopOf="@id/Linear1"
-        android:layout_width="0dp"
-        app:layout_constraintTop_toTopOf="@id/guidelineHorizontal"
-        app:layout_constraintStart_toStartOf="@id/Linear1"
-        android:layout_marginLeft="-5dp"
-        android:layout_marginRight="-5dp"
-        android:background="@drawable/home_rect"
-        app:layout_constraintEnd_toEndOf="@id/Linear1"
-        android:layout_height="0dp"
-        android:layout_marginBottom="-50dp"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:id="@+id/imageView"
+        <TextView
+            android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_ar_icon_2"
-            app:layout_constraintStart_toStartOf="@id/Linear2"
-            app:layout_constraintTop_toTopOf="@id/Linear2"
-            app:layout_constraintEnd_toStartOf="@id/imageView2"
-            app:layout_constraintBottom_toBottomOf="@id/Linear2" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/Linear2"
-            app:layout_constraintStart_toStartOf="@id/Linear2"
-            app:layout_constraintEnd_toEndOf="@id/Linear2"
-            app:layout_constraintTop_toTopOf="@id/Linear2"
-            app:srcCompat="@drawable/dnd" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDnD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="16dp"
-            android:text="Drag &amp; Drop here"
-            app:layout_constraintBottom_toBottomOf="@id/Linear2"
-            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Welcome"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/imageView2"
-            android:fontFamily="@font/noto_sans"
-            app:layout_constraintEnd_toEndOf="@id/imageView2"
-            app:layout_constraintTop_toBottomOf="@id/imageView2"/>
+            app:layout_constraintBottom_toBottomOf="@id/cvOuter"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvUpcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            app:layout_constraintTop_toBottomOf="@id/cvOuter"
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            android:text="Upcoming Appointments"/>
+
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/ivAppointments"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvUpcoming"
+            app:layout_constraintBottom_toBottomOf="@id/tvUpcoming"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvTotalAppointments"
+            app:layout_constraintStart_toStartOf="@id/ivAppointments"
+            app:layout_constraintEnd_toEndOf="@id/ivAppointments"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ivAppointments"
+            app:layout_constraintBottom_toBottomOf="@id/ivAppointments"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:fontFamily="@font/open_sans"
+            android:textColor="#1CA3A4"/>
+
+
+
+
+
+
+
+
+        <EditText
+            android:id="@+id/etSearch"
+            style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="16sp"
+            android:hint="Search Category"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="6dp"
+            android:inputType="textAutoCorrect"
+            android:maxLines="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            android:background="@drawable/search_bg"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginVertical="8dp"
+            android:textColorHint="#A6AAAB"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+
+
+        <com.airbnb.epoxy.EpoxyRecyclerView
+            android:clipToPadding="false"
+            android:id="@+id/rvHome"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/etSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <ImageView-->
-<!--            android:id="@+id/imageView"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="250dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:src="@drawable/ic_launcher_background" />-->
-
-<!--    <androidx.cardview.widget.CardView android:id="@+id/cvBlue"-->
-<!--        android:layout_width="160dp"-->
-<!--        android:layout_height="190dp"-->
-<!--        card_view:cardCornerRadius="10dp"-->
-<!--        card_view:cardElevation="5dp"-->
-<!--        card_view:cardUseCompatPadding="true"-->
-<!--        card_view:layout_constraintTop_toBottomOf="@+id/imageView"-->
-<!--        card_view:layout_constraintStart_toStartOf="parent"-->
-<!--        card_view:layout_constraintHorizontal_bias="1.0"-->
-<!--        xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-<!--        xmlns:android="http://schemas.android.com/apk/res/android">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="160dp"-->
-<!--            android:layout_height="190dp"-->
-<!--            android:elevation="5dp"-->
-<!--            android:orientation="vertical">-->
-
-
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:paddingLeft="8dp"-->
-<!--                android:paddingTop="8dp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Sample 1"-->
-<!--                android:ellipsize="end"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textSize="16sp"-->
-<!--                />-->
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvBlue2"-->
-<!--                android:layout_width="130dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:paddingLeft="8dp"-->
-<!--                android:paddingRight="8dp"-->
-<!--                android:paddingTop="6dp"-->
-<!--                android:text="1"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold|italic" />-->
-
-
-<!--        </LinearLayout>-->
-
-<!--    </androidx.cardview.widget.CardView>-->
-
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/cvBlue2"-->
-<!--        android:layout_width="160dp"-->
-<!--        android:layout_height="190dp"-->
-<!--        app:cardCornerRadius="10dp"-->
-<!--        app:cardElevation="5dp"-->
-<!--        app:cardUseCompatPadding="true"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/cvBlue">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="160dp"-->
-<!--            android:layout_height="190dp"-->
-<!--            android:elevation="5dp"-->
-<!--            android:orientation="vertical">-->
-
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:paddingLeft="8dp"-->
-<!--                android:paddingTop="8dp"-->
-<!--                android:text="Sample 2"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <androidx.appcompat.widget.AppCompatTextView-->
-<!--                android:id="@+id/tvBlue"-->
-<!--                android:layout_width="130dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:ellipsize="end"-->
-<!--                android:paddingLeft="8dp"-->
-<!--                android:paddingTop="6dp"-->
-<!--                android:paddingRight="8dp"-->
-<!--                android:text="1"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold|italic" />-->
-
-
-<!--        </LinearLayout>-->
-
-<!--    </androidx.cardview.widget.CardView>-->

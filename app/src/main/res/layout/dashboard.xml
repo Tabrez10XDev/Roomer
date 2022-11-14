@@ -6,35 +6,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavBar"
+        app:layout_constraintBottom_toBottomOf="@id/nav_view"
         android:layout_height="0dp">
 
+
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/dashboardFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/dashboard_nav" />
+            android:paddingBottom="16dp"
+            app:navGraph="@navigation/dashboard_nav"
+            tools:layout="@layout/home" />
 
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavBar"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@color/white"
-        app:labelVisibilityMode="unlabeled"
-        style="@style/BottomNavigation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/nav_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/dashboard" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:cnb_menuResource="@menu/dashboard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

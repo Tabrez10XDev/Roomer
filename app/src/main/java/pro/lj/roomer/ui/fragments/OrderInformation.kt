@@ -17,7 +17,7 @@ import pro.lj.roomer.util.Status
 import pro.lj.roomer.viewmodel.MainViewModel
 import java.io.File
 
-class OrderInformation : Fragment(R.layout.order_information) {
+class OrderInformation : Fragment() {
     private var _binding: OrderInformationBinding? = null
     private val binding get() = _binding!!
     lateinit var viewModel: MainViewModel

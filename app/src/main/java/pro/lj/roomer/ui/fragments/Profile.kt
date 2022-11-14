@@ -15,7 +15,7 @@ import pro.lj.roomer.databinding.ProfileBinding
 import pro.lj.roomer.util.Status
 import pro.lj.roomer.viewmodel.MainViewModel
 
-class Profile : Fragment(R.layout.profile) {
+class Profile : Fragment() {
 
     private var _binding: ProfileBinding? = null
     private val binding get() = _binding!!

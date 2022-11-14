@@ -9,7 +9,7 @@ import pro.lj.roomer.R
 import pro.lj.roomer.databinding.OrderHistoryBinding
 import pro.lj.roomer.databinding.ProfileBinding
 
-class OrderHistory: Fragment(R.layout.order_history) {
+class OrderHistory: Fragment() {
     private var _binding: OrderHistoryBinding? = null
     private val binding get() = _binding!!
 

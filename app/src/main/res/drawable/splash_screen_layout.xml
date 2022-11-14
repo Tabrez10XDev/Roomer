@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@color/white"/>
-    <item android:drawable="@drawable/logo" android:gravity="center"/>
+    <item android:drawable="@drawable/ic_logo" android:gravity="center" android:height="60dp" android:width="60dp"/>
 
 </layer-list>

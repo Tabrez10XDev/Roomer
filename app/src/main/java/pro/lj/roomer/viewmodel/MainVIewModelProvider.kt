@@ -6,7 +6,7 @@ import pro.lj.roomer.repositories.MainRepository
 
 class MainVIewModelProviderFactory(
                             val mainRepository: MainRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainViewModel(mainRepository) as T
     }
 
