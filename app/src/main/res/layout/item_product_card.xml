@@ -1,106 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
-        app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="#F7F7F6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="150dp"
-        android:padding="32dp"
-        android:layout_height="200dp">
+    <data>
+        <variable
+            name="onClickContent"
+            type="android.view.View.OnClickListener" />
+    </data>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
-
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="8dp"
             app:cardCornerRadius="16dp"
-            android:elevation="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
+            app:cardBackgroundColor="#F7F7F6"
+            android:onClick="@{onClickContent}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="150dp"
+            android:padding="32dp"
+            android:layout_height="200dp">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/sample_sofa"/>
+                android:orientation="vertical"
+                android:layout_height="match_parent">
 
+
+                <androidx.cardview.widget.CardView
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="16dp"
+                    android:elevation="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/sample_sofa" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:layout_marginStart="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:text="White Woodie" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="14sp"
+                        android:textColor="#888888"
+                        android:text="Sofa" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="16sp"
+                        android:textColor="#007060"
+                        android:text="₹20,200"
+                        android:layout_gravity="end" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="#F7F7F6"
+                    android:numStars="5"
+                    android:layout_marginTop="8dp"
+                    android:progressTint="#FFCB45"
+                    android:rating="2.5" />
+
+            </LinearLayout>
 
 
         </androidx.cardview.widget.CardView>
 
 
-        <TextView
-            android:layout_marginStart="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:fontFamily="@font/open_sans_semibold"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="White Woodie"
-            />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="8dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:textSize="14sp"
-                    android:textColor="#888888"
-                    android:text="Sofa"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:textSize="16sp"
-                    android:textColor="#007060"
-                    android:text="₹20,200"
-                    android:layout_gravity="end"
-                    />
-
-
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.AppCompatRatingBar
-                android:id="@+id/ratingBar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="#F7F7F6"
-                android:numStars="5"
-                android:layout_marginTop="8dp"
-                android:progressTint="#FFCB45"
-                android:rating="2.5" />
-
-        </LinearLayout>
-
-
-
-
-
-    </androidx.cardview.widget.CardView>
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

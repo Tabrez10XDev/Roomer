@@ -3,25 +3,28 @@
 xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
     android:id="@+id/home"
-    android:icon="@drawable/ic_home"
+    android:icon="@drawable/home"
     android:title="Home"
     app:cnb_iconColor="#22ABA4"/>
+
+    <item
+        android:id="@+id/measure"
+        android:icon="@drawable/measure"
+        android:title="Measure"
+        app:cnb_iconColor="#22ABA4" />
+
 <item
     android:id="@+id/wishlist"
-    android:icon="@drawable/ic_wishlist"
+    android:icon="@drawable/wishlist"
     android:title="Wishlist"
     app:cnb_iconColor="#22ABA4"/>
 
 <item
     android:id="@+id/cart"
-    android:icon="@drawable/ic_cart"
+    android:icon="@drawable/cart"
     android:title="Cart"
     app:cnb_iconColor="#22ABA4" />
 
-<item
-    android:id="@+id/profile"
-    android:icon="@drawable/ic_profile"
-    android:title="Profile"
-    app:cnb_iconColor="#22ABA4" />
+
 
 </menu>

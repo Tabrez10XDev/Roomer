@@ -9,5 +9,7 @@
     <string name="full_name">Full Name</string>
     <string name="enter_full_name">Enter Full name</string>
     <string name="create_password">Create Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

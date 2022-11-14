@@ -29,7 +29,6 @@ class AR : AppCompatActivity() {
         binding = ArScreenBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        Log.d("TAGGG","here")
 
         if (!checkIsSupportedDeviceOrFinish(this)) {
             return;

@@ -18,15 +18,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.airbnb.epoxy.CarouselModel_
+import com.airbnb.epoxy.EpoxyModel.SpanSizeOverrideCallback
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import pro.lj.roomer.CardBindingModel_
-import pro.lj.roomer.R
+import pro.lj.roomer.*
 import pro.lj.roomer.databinding.HomeBinding
-import pro.lj.roomer.iv
 import pro.lj.roomer.repositories.MainRepository
-import pro.lj.roomer.tv
 import pro.lj.roomer.ui.adapters.HomeAdapter
 import pro.lj.roomer.ui.app.AR
 import pro.lj.roomer.ui.app.Dashboard
@@ -148,6 +146,23 @@ class Home : Fragment(R.layout.home) {
             tv{
                 id(-3)
                 text("Top Sofa")
+            }
+
+
+            val arr = arrayListOf<Int>(1,2,3,4,5,6)
+
+            this.spanCount = 2
+            arr.forEachIndexed { index, i ->
+                productCard {
+                    id(100 + index)
+                    onClickContent { _ ->
+                        findNavController().navigate(R.id.action_home_to_productDetail)
+//                        val intent = Intent(activity, AR::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        startActivity(intent)
+                    }
+                   // spanSizeOverride { totalSpanCount, position, itemCount -> 2 }
+                }
             }
         }
 

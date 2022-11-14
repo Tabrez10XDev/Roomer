@@ -93,23 +93,15 @@ class Register : Fragment(R.layout.register) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
-                        Log.d("tsbrez","Pass")
 
                         fireStore.collection("users").document(auth.uid!!).set(user)
                         Toast.makeText(activity,"Account created",Toast.LENGTH_SHORT).show()
                         checkLoggedInState()
 
                     }.addOnFailureListener(){
-                        Log.d("tsbrez","Fail")
 
-                        Toast.makeText(activity,it.message,Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(activity,it.message,Toast.LENGTH_SHORT).show()
                         //hidebar()
-                    }.addOnCompleteListener {
-                        Log.d("tsbrez","compp")
-
-                    }.addOnCanceledListener {
-                        Log.d("tsbrez","cancel")
-
                     }
 
 
