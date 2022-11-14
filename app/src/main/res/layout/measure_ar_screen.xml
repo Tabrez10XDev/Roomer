@@ -22,4 +22,109 @@
 
 
     </FrameLayout>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/measure_ar_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvMeasure"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="32dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardElevation="0dp"
+            android:alpha="0.8"
+            android:padding="16dp"
+            android:layout_width="130dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginVertical="8dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvMeasure"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:text="..."
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_measure"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:padding="16dp"
+            android:drawablePadding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:id="@+id/btnSearch"
+            android:textAllCaps="false"
+            android:text="Search"
+            android:background="@drawable/btn_search_ar"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:drawableEnd="@drawable/ic_scan"
+            app:layout_constraintTop_toTopOf="@id/cvMeasure"
+            app:layout_constraintBottom_toBottomOf="@id/cvMeasure"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp"/>
+
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/tvRecommended"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/black"
+            android:text="Recommended"
+            app:layout_constraintTop_toBottomOf="@id/btnSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/tvTip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="#888888"
+            android:text="Product suits within the measured Distance"
+            app:layout_constraintTop_toBottomOf="@id/tvRecommended"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

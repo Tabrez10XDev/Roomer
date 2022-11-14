@@ -101,10 +101,24 @@ class Home : Fragment(R.layout.home) {
 
     private fun setupHomeRecyclerView(data: List<Item>?) {
         binding.rvHome.withModels {
-            iv { id(-1) }
+            val ivModels = mutableListOf<IvBindingModel_>()
+
+            val ivModel = IvBindingModel_()
+                .id("-1")
+                .spanSizeOverride { totalSpanCount, position, itemCount -> 1 }
+            ivModels.add(ivModel)
+            CarouselModel_()
+                .id("carousel3")
+                .models(ivModels)
+                .addTo(this);
+//            iv {
+//                id(-1)
+//                spanCount = 1
+//            }
             tv {
                 id(-2)
                 text("Category")
+
             }
             val deptModels = mutableListOf<CardBindingModel_>()
             CATEGORIES.forEachIndexed { index, item ->
@@ -132,19 +146,27 @@ class Home : Fragment(R.layout.home) {
                 .models(deptModels)
                 .addTo(this);
 
-            tv{
-                id(-3)
-                text("Top Sofa")
-            }
+            val TvModels = mutableListOf<TvBindingModel_>()
+
+            val TvModel = TvBindingModel_()
+                .id("-10")
+                .text("Top Sofa")
+                .spanSizeOverride { totalSpanCount, position, itemCount -> 1 }
+            TvModels.add(TvModel)
+            CarouselModel_()
+                .id("carousel4")
+                .models(TvModels)
+                .addTo(this);
+
 
 
             data?.forEachIndexed { index, i ->
-                Log.d("PRABHU",i.imageUri + ":  Hey")
                 productCard {
                     id(100 + index)
                     name(i.name)
                     price("₹" + i.price)
                     img(i.imageUri)
+
                 //    spanSizeOverride { totalSpanCount, position, itemCount -> totalSpanCount/2  }
                     onClickContent { _ ->
                         val bundle = Bundle().apply {

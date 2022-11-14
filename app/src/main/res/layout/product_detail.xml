@@ -69,7 +69,6 @@
             android:scaleType="centerInside"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/sample_sofa"
             />
 
     </androidx.cardview.widget.CardView>

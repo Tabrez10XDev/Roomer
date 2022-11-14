@@ -3,20 +3,20 @@ package pro.lj.roomer.ui.app
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
+import android.graphics.Typeface.createFromAsset
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.Renderable
+import com.google.ar.sceneform.rendering.*
+import com.google.ar.sceneform.rendering.PlaneRenderer.MATERIAL_TEXTURE
+import com.google.ar.sceneform.rendering.PlaneRenderer.MATERIAL_UV_SCALE
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.gorisse.thomas.sceneform.light.LightEstimationConfig
@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 import pro.lj.roomer.R
 import pro.lj.roomer.data.Item
 import pro.lj.roomer.databinding.ArScreenBinding
+
 
 class AR : AppCompatActivity() {
     private lateinit var binding: ArScreenBinding
@@ -49,6 +50,8 @@ class AR : AppCompatActivity() {
         if (!checkIsSupportedDeviceOrFinish(this)) {
             return;
         }
+
+        //setPlaneTexture()
 
 
 
@@ -103,6 +106,25 @@ class AR : AppCompatActivity() {
 
         // Create the Anchor.
         arSceneView.lightEstimationConfig = LightEstimationConfig.AMBIENT_INTENSITY
+//        val sampler = Texture.Sampler.builder()
+//            .setMagFilter(Texture.Sampler.MagFilter.LINEAR)
+//            .setMinFilter(Texture.Sampler.MinFilter.LINEAR)
+//            .setWrapMode(Texture.Sampler.WrapMode.REPEAT)
+//            .build()
+//
+//        val trigrid: CompletableFuture<Texture> = Texture.builder()
+//            .setSource(this, pro.lj.roomer.R.drawable.gray)
+//            .setSampler(sampler).build()
+//
+//        val planeRenderer = arSceneView.planeRenderer
+//        planeRenderer.material.thenAcceptBoth(trigrid){ material: Material, texture: Any? ->
+//            material.setTexture(PlaneRenderer.MATERIAL_TEXTURE, texture)
+//            material.setFloat(
+//                PlaneRenderer.MATERIAL_SPOTLIGHT_RADIUS,
+//                Float.MAX_VALUE
+//            )
+//        }
+//        arSceneView.planeRenderer = planeRenderer
 
         scene.addChild(AnchorNode(hitResult.createAnchor()).apply {
             // Create the transformable model and add it to the anchor.
@@ -115,6 +137,31 @@ class AR : AppCompatActivity() {
                 renderableInstance?.animate(true)?.start()
             })
         })
+    }
+
+    private fun setPlaneTexture() {
+        val sampler = Texture.Sampler.builder()
+            .setMinFilter(Texture.Sampler.MinFilter.LINEAR_MIPMAP_LINEAR)
+            .setMagFilter(Texture.Sampler.MagFilter.LINEAR)
+            .setWrapModeR(Texture.Sampler.WrapMode.REPEAT)
+            .setWrapModeS(Texture.Sampler.WrapMode.REPEAT)
+            .setWrapModeT(Texture.Sampler.WrapMode.REPEAT)
+            .build()
+
+
+
+        Texture.builder().setSource(this, R.drawable.trigrid)
+            .setSampler(sampler)
+            .build().thenAccept { texture ->
+                arSceneView.planeRenderer.material
+                    .thenAccept { material: Material ->
+                        material.setTexture(MATERIAL_TEXTURE, texture)
+                        material.setFloat(MATERIAL_UV_SCALE, 10f)
+                    }
+            }.exceptionally { ex ->
+                Log.e("Prabhu", "Failed to read an asset file", ex)
+                null
+            }
     }
 
 

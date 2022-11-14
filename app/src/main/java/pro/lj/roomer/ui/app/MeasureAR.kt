@@ -9,8 +9,12 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Constraints
+import androidx.core.view.updateLayoutParams
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -23,11 +27,8 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.*
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import com.gorisse.thomas.sceneform.light.LightEstimationConfig
-import com.gorisse.thomas.sceneform.lightEstimationConfig
 import pro.lj.roomer.R
 import pro.lj.roomer.databinding.MeasureArScreenBinding
-import pro.lj.roomer.util.Constants
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -81,6 +82,17 @@ class MeasureAR : AppCompatActivity(), Scene.OnUpdateListener {
             setOnTapArPlaneListener(::onTapPlane)
         }
 
+        binding.btnSearch.setOnClickListener {
+            binding.bottomSheet.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                height = 1000
+            }
+
+            binding.apply {
+                tvRecommended.visibility = View.VISIBLE
+                tvTip.visibility = View.VISIBLE
+            }
+        }
+
 
 
     }
@@ -129,13 +141,7 @@ class MeasureAR : AppCompatActivity(), Scene.OnUpdateListener {
             anchorNode.setParent(null)
         }
         midAnchorNodes.clear()
-//        for (i in 0 until Constants.maxNumMultiplePoints){
-//            for (j in 0 until Constants.maxNumMultiplePoints){
-//                if (multipleDistances[i][j] != null){
-//                    multipleDistances[i][j]!!.setText(if(i==j) "-" else initCM)
-//                }
-//            }
-//        }
+
         fromGroundNodes.clear()
     }
 
@@ -248,44 +254,32 @@ class MeasureAR : AppCompatActivity(), Scene.OnUpdateListener {
         }
     }
 
-    private fun changeUnit(distanceMeter: Float, unit: String): Float{
-        return when(unit){
-            "cm" -> distanceMeter * 100
-            "mm" -> distanceMeter * 1000
-            else -> distanceMeter
-        }
-    }
-
-    private fun makeDistanceTextWithCM(distanceMeter: Float): String{
-        val distanceCM = changeUnit(distanceMeter, "cm")
-        val distanceCMFloor = "%.2f".format(distanceCM)
-        return "${distanceCMFloor} cm"
-    }
+//    private fun changeUnit(distanceMeter: Float, unit: String): Float{
+//        return when(unit){
+//            "cm" -> distanceMeter * 100
+//            "mm" -> distanceMeter * 1000
+//            else -> distanceMeter
+//        }
+//    }
+//
+//    private fun makeDistanceTextWithCM(distanceMeter: Float): String{
+//        val distanceCM = changeUnit(distanceMeter, "cm")
+//        val distanceCMFloor = "%.2f".format(distanceCM)
+//        return "${distanceCMFloor} cm"
+//    }
 
     private fun measureDistanceOf2Points(distanceMeter: Float){
-        val distanceTextCM = makeDistanceTextWithCM(distanceMeter)
-        Log.d("ALLAN", "distance: ${distanceTextCM}")
+    //    val distanceTextCM = makeDistanceTextWithCM(distanceMeter)
+        val distanceMFloor = "%.2f".format(distanceMeter)
+
+        binding.tvMeasure.text = distanceMFloor.toString() + "m"
     }
 
     private fun calculateDistance(x: Float, y: Float, z: Float): Float{
         return sqrt(x.pow(2) + y.pow(2) + z.pow(2))
     }
 
-    private fun calculateDistance(objectPose0: Pose, objectPose1: Pose): Float{
-        return calculateDistance(
-            objectPose0.tx() - objectPose1.tx(),
-            objectPose0.ty() - objectPose1.ty(),
-            objectPose0.tz() - objectPose1.tz())
-    }
 
-
-    private fun calculateDistance(objectPose0: Vector3, objectPose1: Pose): Float{
-        return calculateDistance(
-            objectPose0.x - objectPose1.tx(),
-            objectPose0.y - objectPose1.ty(),
-            objectPose0.z - objectPose1.tz()
-        )
-    }
 
     private fun calculateDistance(objectPose0: Vector3, objectPose1: Vector3): Float{
         return calculateDistance(
