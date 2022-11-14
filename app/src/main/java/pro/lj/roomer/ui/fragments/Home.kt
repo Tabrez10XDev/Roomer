@@ -2,10 +2,8 @@ package pro.lj.roomer.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -17,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import pro.lj.roomer.*
 import pro.lj.roomer.data.Item
 import pro.lj.roomer.databinding.HomeBinding
-import pro.lj.roomer.ui.adapters.HomeAdapter
+import pro.lj.roomer.ui.adapters.MeasureAdapter
 import pro.lj.roomer.ui.app.MainActivity
 import pro.lj.roomer.util.Constants.CATEGORIES
 import pro.lj.roomer.util.Status
@@ -27,13 +25,13 @@ class Home : Fragment(R.layout.home) {
     private var _binding: HomeBinding? = null
     private val binding get() = _binding!!
     lateinit var auth: FirebaseAuth
-    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var measureAdapter: MeasureAdapter
     var selected: Int ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        homeAdapter =
-                HomeAdapter()
+        measureAdapter =
+                MeasureAdapter()
     }
 
     override fun onCreateView(

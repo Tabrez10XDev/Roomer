@@ -33,6 +33,11 @@ class MainViewModel(
     val mapData : MutableLiveData<Resource<Url>> = MutableLiveData()
     private val _producutList : MutableLiveData<Resource<List<Item>>> = MutableLiveData()
     val producutList = _producutList
+
+//    private val _filteredList : MutableLiveData<Resource<List<Item>>> = MutableLiveData()
+//    val filteredList = _filteredList
+
+
     private val _user : MutableLiveData<Resource<User>> = MutableLiveData()
     val user = _user
 
@@ -41,6 +46,9 @@ class MainViewModel(
 
         fetchProducts()
     }
+
+
+
     fun fetchProducts(){
         fireStore.collection("products")
                 .get()

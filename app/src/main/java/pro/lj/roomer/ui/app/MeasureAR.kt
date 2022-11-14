@@ -14,7 +14,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Constraints
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.updateLayoutParams
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.ar.core.Anchor
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -27,8 +29,12 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.*
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
+import com.google.firebase.firestore.FirebaseFirestore
 import pro.lj.roomer.R
+import pro.lj.roomer.data.Item
 import pro.lj.roomer.databinding.MeasureArScreenBinding
+import pro.lj.roomer.ui.adapters.MeasureAdapter
+import pro.lj.roomer.util.Resource
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -36,10 +42,11 @@ class MeasureAR : AppCompatActivity(), Scene.OnUpdateListener {
 
 
 
-
+    private var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
+    var distanceMeterFinal: String ?= null
     private var cubeRenderable: ModelRenderable? = null
     private var distanceCardViewRenderable: ViewRenderable? = null
-
+    private lateinit var measureAdapter: MeasureAdapter
 
     private val placedAnchors = ArrayList<Anchor>()
     private val placedAnchorNodes = ArrayList<AnchorNode>()
@@ -82,21 +89,55 @@ class MeasureAR : AppCompatActivity(), Scene.OnUpdateListener {
             setOnTapArPlaneListener(::onTapPlane)
         }
 
+        setupMeasureRecyclerView()
+
         binding.btnSearch.setOnClickListener {
             binding.bottomSheet.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                height = 1000
+                height = 1300
             }
 
             binding.apply {
                 tvRecommended.visibility = View.VISIBLE
                 tvTip.visibility = View.VISIBLE
             }
+
+            distanceMeterFinal?.let { fetchProductsUnder(it.toFloat()) }
         }
 
 
 
     }
 
+    fun fetchProductsUnder(len: Float){
+        fireStore.collection("products")
+            .get()
+            .addOnSuccessListener { result ->
+                val itemList : MutableList<Item> = arrayListOf()
+                for (document in result) {
+
+                    val item = document.toObject(Item::class.java)
+                    if(item.length <= len){
+                        itemList.add(item)
+                    }
+
+
+                }
+                measureAdapter.differ.submitList(itemList)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this,"Unknown Error",Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun setupMeasureRecyclerView(){
+        val horizontalManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        measureAdapter =
+            MeasureAdapter()
+        binding.measureRV.apply {
+            adapter = measureAdapter
+            layoutManager = horizontalManager
+        }
+    }
 
     private fun initRenderable() {
         MaterialFactory.makeTransparentWithColor(
@@ -271,7 +312,7 @@ class MeasureAR : AppCompatActivity(), Scene.OnUpdateListener {
     private fun measureDistanceOf2Points(distanceMeter: Float){
     //    val distanceTextCM = makeDistanceTextWithCM(distanceMeter)
         val distanceMFloor = "%.2f".format(distanceMeter)
-
+        distanceMeterFinal = distanceMFloor
         binding.tvMeasure.text = distanceMFloor.toString() + "m"
     }
 
